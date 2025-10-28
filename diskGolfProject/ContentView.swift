@@ -6,19 +6,31 @@
 //
 
 import SwiftUI
+import MapKit
 
+struct Player {
+    var name: String
+    var score: Int = 0
+}
 struct ContentView: View {
+    
+    @State var hole = 1
+    @State var names: [String] = []
+    @State var players: [Player] = [Player(name: "Player 1",score: 0)]
+
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            ScoreView(names: $names)
+            MapView(hole: $hole, names: $names)
+            
+            HoleView(hole: $hole)
+            
         }
-        .padding()
+        .tabViewStyle(PageTabViewStyle())
+            .ignoresSafeArea(.all)
     }
 }
-
 #Preview {
     ContentView()
 }
