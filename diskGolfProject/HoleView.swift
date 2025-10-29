@@ -39,7 +39,7 @@ struct HoleView: View {
                     }
                 Spacer()
                 HStack {
-                    Map() {
+                    Map(interactionModes: []) {
                         if let currentTeeCoordinate = Coordinates.TeeCords(hole: hole) {
                             Annotation("Hole \(hole) Tee", coordinate: currentTeeCoordinate) {
                                 Image(systemName: "square.fill")

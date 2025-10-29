@@ -20,6 +20,7 @@ struct ScoreView: View {
     
     @State var done: Bool = false
     
+    
     var body: some View {
         ZStack {
             
@@ -33,16 +34,18 @@ struct ScoreView: View {
                     .ignoresSafeArea(edges: .all)
                     .padding()
                     .overlay{
-                        Text("\(scores)")
+                        Text("Score")
                             .font(.system(size: 70))
                             .fontWeight(.bold)
                             .fontDesign(.rounded)
                             .foregroundColor(.white)
+                            .frame(width: 250)
                         
                     }
                 Spacer()
                 
                 VStack {
+                    if names.count != 0 {
                     HStack {
                         Text("Name:")
                             .font(.system(size: 50))
@@ -50,6 +53,7 @@ struct ScoreView: View {
                             .fontDesign(.rounded)
                             .foregroundColor(.white)
                             .padding(.trailing,140)
+                            .frame(width: 350)
                         Rectangle()
                             .frame(width: 5, height: 140)
                             .border(Color.white, width: 5)
@@ -59,6 +63,7 @@ struct ScoreView: View {
                             .fontDesign(.rounded)
                             .foregroundColor(.white)
                             .padding(.leading,30)
+                            .frame(width: 250)
                         
                     }
                     .frame(width: 600, height: 100)
@@ -66,7 +71,7 @@ struct ScoreView: View {
                     .border(Color.white, width: 5)
                     .background(.purple)
                     
-                    if names.count != 0 {
+                    
                         ScrollView {
                             ForEach (0..<names.count, id: \.self) { index in
                                 
@@ -99,23 +104,7 @@ struct ScoreView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        Button {
-                            names.removeAll()
-                            scores.removeAll()
                         
-                        }
-                        label:{
-                            Capsule()
-                                .fill(Color.red)
-                                .frame(width: 150, height: 100)
-                                .overlay{
-                                    Text("X")
-                                        .foregroundStyle(.white)
-                                        .font(.system(size: 60))
-                                        .fontWeight(.black)
-                                }
-                            
-                        }
                         
                     }
                 }
